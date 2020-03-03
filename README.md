@@ -1,2 +1,2 @@
-# prog-2020
+GROUP : A6
 

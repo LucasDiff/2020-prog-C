@@ -14,7 +14,7 @@ char* reverse(const char* text){
   x--;
   int v = 0;
   char *pole2 = calloc(128,sizeof(char));
-    while (x != 0){
+    while (x != -1){
     pole2[v] = pole[x];
     x--;
     v++;

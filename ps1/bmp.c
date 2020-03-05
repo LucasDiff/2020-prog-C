@@ -8,7 +8,7 @@ char* reverse(const char* text){
         return NULL;
     }
   int x = 0;
-  char pole[128];
+  char pole[500];
   while (*text != '\0'){
   pole[x]= toupper(*text);
   x++;
@@ -16,7 +16,7 @@ char* reverse(const char* text){
   }
   x--;
   int v = 0;
-  char *pole2 = calloc(128,sizeof(char));
+  char *pole2 = calloc(500,sizeof(char));
     while (x != -1){
     pole2[v] = pole[x];
     x--;
@@ -25,20 +25,38 @@ char* reverse(const char* text){
   return pole2;
   }
 char* vigenere_encrypt(const char* key, const char* text){
+   if (*text == NULL){
+        return NULL;
+    }
     return NULL;
 }
 char* vigenere_decrypt(const char* key, const char* text){
+    if (*text == NULL){
+        return NULL;
+    }
     return NULL;
 }
 unsigned char* bit_encrypt(const char* text){
+    if (*text == NULL){
+        return NULL;
+    }
     return NULL;
 }
 char* bit_decrypt(const unsigned char* text){
+    if (*text == NULL){
+        return NULL;
+    }
     return NULL;
 }
 unsigned char* bmp_encrypt(const char* key, const char* text){
+    if (*text == NULL){
+        return NULL;
+    }
     return NULL;
 }
 char* bmp_decrypt(const char* key, const unsigned char* text){
+    if (*text == NULL){
+        return NULL;
+    }
     return NULL;
 }

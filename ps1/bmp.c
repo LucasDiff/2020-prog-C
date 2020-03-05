@@ -4,6 +4,9 @@
 #include <ctype.h>
 
 char* reverse(const char* text){
+    if (text == NULL){
+        return NULL;
+    }
   int x = 0;
   char pole[500];
   while (*text != '\0'){

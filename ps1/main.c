@@ -108,7 +108,7 @@ free(decrypted);
 char* encrypted;
 
 // basic test with long text
-encrypted = bmp_decrypt("CoMPuTeR", "Hello world!");
+encrypted = bmp_enrypt("CoMPuTeR", "Hello world!");
 printf("%s\n", encrypted);
 // "JSXAI PSINR!"
 free(encrypted);

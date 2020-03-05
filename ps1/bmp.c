@@ -4,9 +4,6 @@
 #include <ctype.h>
 
 char* reverse(const char* text){
-    if (*text == NULL){
-        return NULL;
-    }
   int x = 0;
   char pole[500];
   while (*text != '\0'){
@@ -25,32 +22,17 @@ char* reverse(const char* text){
   return pole2;
   }
 char* vigenere_encrypt(const char* key, const char* text){
-   if (*text == NULL){
-        return NULL;
-    }
     return NULL;
 }
 char* vigenere_decrypt(const char* key, const char* text){
-    if (*text == NULL){
-        return NULL;
-    }
     return NULL;
 }
 unsigned char* bit_encrypt(const char* text){
-    if (*text == NULL){
-        return NULL;
-    }
     return NULL;
 }
 char* bit_decrypt(const unsigned char* text){
-    if (*text == NULL){
-        return NULL;
-    }
     return NULL;
 }
 char* bmp_decrypt(const char* key, const unsigned char* text){
-    if (*text == NULL){
-        return NULL;
-    }
     return NULL;
 }

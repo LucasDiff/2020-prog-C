@@ -21,3 +21,9 @@ char* reverse(const char* text){
   }
   return pole2;
   }
+char* vigenere_encrypt(const char* key, const char* text){
+    return NULL;
+}
+char* vigenere_decrypt(const char* key, const char* text){
+    return NULL;
+}

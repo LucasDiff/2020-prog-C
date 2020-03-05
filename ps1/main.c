@@ -80,4 +80,20 @@ printf("%s", decrypted);
 free(encrypted);
 free(decrypted);
 
+unsigned char* decrypted;
+
+// basic test with long text
+decrypted = bit_decrypt("80 9c 95 95 96 11 bc 96 b9 95 9d 10");
+for(int i=0; i < 12;i++) {
+    printf("%x ", decrypted[i]);
+    //Hello world!
+}
+free(decrypted);
+char* decrypted;
+
+// basic test with long text
+decrypted = vigenere_decrypt("CoMPuTeR", "Hello world!");
+printf("%s\n", decrypted);
+// "JSXAI PSINR!"
+
 }

@@ -48,12 +48,6 @@ char* bit_decrypt(const unsigned char* text){
     }
     return NULL;
 }
-unsigned char* bmp_encrypt(const char* key, const char* text){
-    if (*text == NULL){
-        return NULL;
-    }
-    return NULL;
-}
 char* bmp_decrypt(const char* key, const unsigned char* text){
     if (*text == NULL){
         return NULL;

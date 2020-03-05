@@ -27,6 +27,12 @@ char* vigenere_encrypt(const char* key, const char* text){
 char* vigenere_decrypt(const char* key, const char* text){
     return NULL;
 }
+unsigned char* bit_encrypt(const char* text){
+    return NULL;
+}
+char* bit_decrypt(const unsigned char* text){
+    return NULL;
+}
 unsigned char* bmp_encrypt(const char* key, const char* text){
     return NULL;
 }

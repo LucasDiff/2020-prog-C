@@ -8,6 +8,8 @@
 #include "playfair.h"
 
 int main(){
+    
+    
 char *encrypted, *decrypted;
 
 // even length of string
@@ -32,4 +34,6 @@ for(int i=0; i < 12;i++) {
     //80 9c 95 95 96 11 bc 96 b9 95 9d 10
 }
 free(encrypted);
+
+
 }

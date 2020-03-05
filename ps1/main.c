@@ -95,5 +95,22 @@ char* decrypted;
 decrypted = vigenere_decrypt("CoMPuTeR", "Hello world!");
 printf("%s\n", decrypted);
 // "JSXAI PSINR!"
+free(decrypted);
+
+char* decrypted;
+
+// basic test with long text
+decrypted = bmp_decrypt("CoMPuTeR", "Hello world!");
+printf("%s\n", decrypted);
+// "JSXAI PSINR!"
+free(decrypted);
+
+char* encrypted;
+
+// basic test with long text
+encrypted = bmp_decrypt("CoMPuTeR", "Hello world!");
+printf("%s\n", encrypted);
+// "JSXAI PSINR!"
+free(encrypted);
 
 }

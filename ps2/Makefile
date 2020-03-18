@@ -11,8 +11,8 @@ OUTPUT=$@
 all: $(OUTPUT)
 
 $(OUTPUT): hof.o k.o main.o ui.o
-cppcheck --enable=performance, unusedFunction --error-exitcode=1 *.c
-$(CC) $(CFLAGS) hof.o k.o ui.o main.o $(LDLIBS) -o $(OUTPUT)
+		cppcheck --enable=performance, unusedFunction --error-exitcode=1 *.c
+		$(CC) $(CFLAGS) hof.o k.o ui.o main.o $(LDLIBS) -o $(OUTPUT)
         
 main.o: main.c
 		$(CC) $(CFLAGS) -c mainc $(LDLIBS) -o main.o

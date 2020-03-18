@@ -29,5 +29,3 @@ k.o: k.c k.h
 # remove compiled files 
 clean:
 		rm -rf $(OUTPUT) *.o
-		
-"Makefile" 35L, 630C

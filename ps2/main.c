@@ -10,23 +10,23 @@
 #include "ui.h"
 
 int main(){
-    struct game game = {
+struct game game = {
     .board = {
+        {'A', 'A', 'C', 'D'},
         {'A', 'B', 'C', 'D'},
-        {'E', 'F', 'G', 'H'},
-        {'I', 'J', 'K', 'A'},
-        {'B', 'C', 'D', 'E'}
+        {'A', 'B', 'C', 'D'},
+        {'A', 'B', 'C', 'D'}
     },
-    .score = 0
+    .score = 1234
 };
 
 printf("is won: %d\n", is_game_won(game));
 
 printf("is move possible: %d\n", is_move_possible(game));
-
-printf("is won: %d\n", is_game_won(game));
-
-printf("is move possible: %d\n", is_move_possible(game));
-
+printf("pismeno je : %c\n",  game.board[0][3]);
+bool result = update(&game, 0, -1);
+printf("pismeno je : %c\n",  game.board[0][3]);
+printf("je : %d\n", result);
+printf("score is : %d\n", game.score);
 return 0;
 }

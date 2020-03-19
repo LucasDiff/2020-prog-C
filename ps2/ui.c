@@ -17,22 +17,6 @@
 //    printf("+---+---+---+---+\n");
 //}
 
-void render(const struct game game){
-    clear();
-    char text[20];
-    sprintf(text, "Score: %d", game.score);
-    attrset(COLOR_PAIR(0));
-    mvprintw(1, (COLS - (int)strlen(text)) / 2, text);
-    int x_start = (COLS - 25) / 2;
-    int y_start = 3;
-    attrset(COLOR_PAIR(6));
-
-    for (int y = y_start; y < y_start + 17; y++){
-        for (int x = x_start; x < x_start + 25; x++){
-            mvprintw(y, x, " ");
-        }
-    }
-
     for (int y = 0; y < SIZE; y++){
         for (int x = 0; x < SIZE; x++) {
             if (game.board[y][x] == ' ')

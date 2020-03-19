@@ -6,7 +6,7 @@
 
 #include "k.h"
 
-void add_random_tile(struct game *game){
+//void add_random_tile(struct game *game){
     int row, col;
     // find random, but empty tile
     do{

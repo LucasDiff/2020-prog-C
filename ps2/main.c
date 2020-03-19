@@ -24,5 +24,9 @@ printf("is won: %d\n", is_game_won(game));
 
 printf("is move possible: %d\n", is_move_possible(game));
 
+printf("is won: %d\n", is_game_won(game));
+
+printf("is move possible: %d\n", is_move_possible(game));
+
 return 0;
 }

@@ -17,8 +17,8 @@ bool is_game_won(const struct game game){
 }
 
 bool is_move_possible(const struct game game){
-    for (int vyska = 0; vyska < 3; vyska++){
-        for (int sirka = 0; sirka < 3; sirka++){
+    for (int vyska = 0; vyska <= 3; vyska++){
+        for (int sirka = 0; sirka <= 3; sirka++){
             if (game.board[vyska][sirka] == ' '){
                 return true;
             }

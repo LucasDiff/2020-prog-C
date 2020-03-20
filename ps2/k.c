@@ -5,7 +5,6 @@
 #include <stdbool.h>
 #include <math.h>
 #include "k.h"
-
 bool is_game_won(const struct game game){
     for (int vyska = 0; vyska <= 3; vyska++){
         for (int sirka = 0; sirka <= 3; sirka++){
@@ -43,18 +42,20 @@ bool is_move_possible(const struct game game){
     return false;
 }
 bool update(struct game *game, int dy, int dx){
+    char pole[11]="ABCDEFGHIJK";
     if (dy == dx){
     return false;
     }
     if (dy + dx == 0){
     return false;
     }
-    double cislo = 0;
+    int cislo = 0;
     if (dx == 1){
+    int v = 0;
     for (int vyska = 0; vyska <= 3; vyska++){
         for (int sirka = 0; sirka < 3; sirka++){
-            int nasobitel = 0;
-            int medzi = 0;
+            v = 0;
+            int nasobitel = 1;
             if (game->board[vyska][sirka] != ' '){
                 if (game->board[vyska][sirka + 1] == ' '){
                     game->board[vyska][sirka + 1] = game->board[vyska][sirka];
@@ -64,18 +65,32 @@ bool update(struct game *game, int dy, int dx){
             if (game->board[vyska][sirka] != ' ' && game->board[vyska][sirka] == game->board[vyska][sirka + 1] && game->board[vyska][sirka + 1] == game->board[vyska][sirka + 2] && game->board[vyska][sirka + 1] != game->board[vyska][sirka + 3]){
                 game->board[vyska][sirka] = ' ';
                 game->board[vyska][sirka + 1] = ' ';
-                medzi = game->board[vyska][sirka + 2] + 1;
-                game->board[vyska][sirka + 3] = medzi;
-                nasobitel = game->board[vyska][sirka + 3] - 64;
-                cislo += pow(2, nasobitel);
+                for (int c = 0; c < 11; c++){
+                if (game->board[vyska][sirka + 2] == pole[c]){
+                c = 11;
+                }
+                v++;
+                }
+                game->board[vyska][sirka + 3] = pole[v];
+                for (int b = 0; b < v; b++){
+                nasobitel = nasobitel * 2;
+                }
+                cislo += nasobitel * 2;
                 }
             if (game->board[vyska][sirka] != ' '){
                 if (game->board[vyska][sirka] == game->board[vyska][sirka+1]){
                     game->board[vyska][sirka] = ' ';
-                    medzi = game->board[vyska][sirka + 1] + 1;
-                    game->board[vyska][sirka + 1] = medzi;
-                    nasobitel = game->board[vyska][sirka + 1] - 64;
-                    cislo += pow(2, nasobitel);
+                for (int c = 0; c < 11; c++){
+                if (game->board[vyska][sirka + 1] == pole[c]){
+                c = 11;
+                }
+                v++;
+                }
+                    game->board[vyska][sirka + 1] = pole[v];
+                for (int b = 0; b < v; b++){
+                nasobitel = nasobitel * 2;
+                }
+                    cislo += nasobitel * 2;
                     }
                     }
             if (game->board[vyska][sirka] != ' '){

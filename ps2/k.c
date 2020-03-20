@@ -49,7 +49,131 @@ bool update(struct game *game, int dy, int dx){
     if (dy + dx == 0){
     return false;
     }
+    if ( dy < -1){
+    return false;
+    }
+    if ( dy > 1){
+    return false;
+    }
+    if ( dx < -1){
+    return false;
+    }
+    if ( dx > 1){
+    return false;
+    }
     int cislo = 0;
+    if (dy == 1){
+    int v = 0;
+    for (int sirka = 0; sirka <= 3; sirka++){
+        for (int vyska = 0; vyska < 3; vyska++){
+            v = 0;
+            int nasobitel = 1;
+            if (game->board[vyska][sirka] != ' '){
+                if (game->board[vyska + 1][sirka] == ' '){
+                    game->board[vyska + 1][sirka] = game->board[vyska][sirka];
+                    game->board[vyska][sirka] = ' ';
+                    }
+                }
+            if (game->board[vyska][sirka] != ' ' && game->board[vyska][sirka] == game->board[vyska + 1][sirka] && game->board[vyska + 1][sirka] == game->board[vyska + 2][sirka] && game->board[vyska + 1][sirka] != game->board[vyska + 3][sirka]){
+                game->board[vyska][sirka] = ' ';
+                game->board[vyska + 1][sirka] = ' ';
+                for (int c = 0; c < 11; c++){
+                if (game->board[vyska + 2][sirka] == pole[c]){
+                c = 11;
+                }
+                v++;
+                }
+                game->board[vyska + 3][sirka] = pole[v];
+                for (int b = 0; b < v; b++){
+                nasobitel = nasobitel * 2;
+                }
+                cislo += nasobitel * 2;
+                }
+            if (game->board[vyska][sirka] != ' '){
+                if (game->board[vyska][sirka] == game->board[vyska + 1][sirka]){
+                    game->board[vyska][sirka] = ' ';
+                for (int c = 0; c < 11; c++){
+                if (game->board[vyska + 1][sirka] == pole[c]){
+                c = 11;
+                }
+                v++;
+                }
+                    game->board[vyska + 1][sirka] = pole[v];
+                for (int b = 0; b < v; b++){
+                nasobitel = nasobitel * 2;
+                }
+                    cislo += nasobitel * 2;
+                    }
+                    }
+            if (game->board[vyska][sirka] != ' '){
+                if (game->board[vyska + 1][sirka] == ' '){
+                    game->board[vyska + 1][sirka] = game->board[vyska][sirka];
+                    game->board[vyska][sirka] = ' ';
+                    }
+                }
+            if ( game->board[1][sirka] != ' ' && game->board[1][sirka] == game->board[3][sirka] && game->board[2][sirka] == ' '){
+            game->board[2][sirka] = game->board[1][vyska];
+            game->board[1][sirka] = ' ';
+            }
+            }
+        }
+    }
+    if (dy == -1){
+    int v = 0;
+    for (int sirka = 0; sirka < 3; sirka++){
+        for (int vyska = 3; vyska >= 0; vyska--){
+            v = 0;
+            int nasobitel = 1;
+            if (game->board[vyska][sirka] != ' '){
+                if (game->board[vyska - 1][sirka] == ' '){
+                    game->board[vyska - 1][sirka] = game->board[vyska][sirka];
+                    game->board[vyska][sirka] = ' ';
+                    }
+                }
+            if (game->board[vyska][sirka] != ' ' && game->board[vyska][sirka] == game->board[vyska - 1][sirka] && game->board[vyska - 1][sirka] == game->board[vyska - 2][sirka] && game->board[vyska - 1][sirka] != game->board[vyska - 3][sirka]){
+                game->board[vyska][sirka] = ' ';
+                game->board[vyska - 1][sirka] = ' ';
+                for (int c = 0; c < 11; c++){
+                if (game->board[vyska - 2][sirka] == pole[c]){
+                c = 11;
+                }
+                v++;
+                }
+                game->board[vyska - 3][sirka] = pole[v];
+                for (int b = 0; b < v; b++){
+                nasobitel = nasobitel * 2;
+                }
+                cislo += nasobitel * 2;
+                }
+            if (game->board[vyska][sirka] != ' '){
+                if (game->board[vyska][sirka] == game->board[vyska - 1][sirka]){
+                    game->board[vyska][sirka] = ' ';
+                for (int c = 0; c < 11; c++){
+                if (game->board[vyska - 1][sirka] == pole[c]){
+                c = 11;
+                }
+                v++;
+                }
+                    game->board[vyska - 1][sirka] = pole[v];
+                for (int b = 0; b < v; b++){
+                nasobitel = nasobitel * 2;
+                }
+                    cislo += nasobitel * 2;
+                    }
+                    }
+            if (game->board[vyska][sirka] != ' '){
+                if (game->board[vyska - 1][sirka] == ' '){
+                    game->board[vyska - 1][sirka] = game->board[vyska][sirka];
+                    game->board[vyska][sirka] = ' ';
+                    }
+                }
+            if ( game->board[2][sirka] != ' ' && game->board[2][sirka] == game->board[0][sirka] && game->board[1][sirka] == ' '){
+            game->board[1][sirka] = game->board[2][sirka];
+            game->board[2][sirka] = ' ';
+            }
+            }
+        }
+        }
     if (dx == 1){
     int v = 0;
     for (int vyska = 0; vyska <= 3; vyska++){
@@ -106,6 +230,62 @@ bool update(struct game *game, int dy, int dx){
             }
         }
     }
+    if (dx == -1){
+    int v = 0;
+    for (int vyska = 0; vyska < 3; vyska++){
+        for (int sirka = 3; sirka >= 0; sirka--){
+            v = 0;
+            int nasobitel = 1;
+            if (game->board[vyska][sirka] != ' '){
+                if (game->board[vyska][sirka - 1] == ' '){
+                    game->board[vyska][sirka - 1] = game->board[vyska][sirka];
+                    game->board[vyska][sirka] = ' ';
+                    }
+                }
+            if (game->board[vyska][sirka] != ' ' && game->board[vyska][sirka] == game->board[vyska][sirka - 1] && game->board[vyska][sirka - 1] == game->board[vyska][sirka - 2] && game->board[vyska][sirka - 1] != game->board[vyska][sirka - 3]){
+                game->board[vyska][sirka] = ' ';
+                game->board[vyska][sirka - 1] = ' ';
+                for (int c = 0; c < 11; c++){
+                if (game->board[vyska][sirka - 2] == pole[c]){
+                c = 11;
+                }
+                v++;
+                }
+                game->board[vyska][sirka - 3] = pole[v];
+                for (int b = 0; b < v; b++){
+                nasobitel = nasobitel * 2;
+                }
+                cislo += nasobitel * 2;
+                }
+            if (game->board[vyska][sirka] != ' '){
+                if (game->board[vyska][sirka] == game->board[vyska][sirka-1]){
+                    game->board[vyska][sirka] = ' ';
+                for (int c = 0; c < 11; c++){
+                if (game->board[vyska][sirka - 1] == pole[c]){
+                c = 11;
+                }
+                v++;
+                }
+                    game->board[vyska][sirka - 1] = pole[v];
+                for (int b = 0; b < v; b++){
+                nasobitel = nasobitel * 2;
+                }
+                    cislo += nasobitel * 2;
+                    }
+                    }
+            if (game->board[vyska][sirka] != ' '){
+                if (game->board[vyska][sirka - 1] == ' '){
+                    game->board[vyska][sirka - 1] = game->board[vyska][sirka];
+                    game->board[vyska][sirka] = ' ';
+                    }
+                }
+            if ( game->board[vyska][2] != ' ' && game->board[vyska][2] == game->board[vyska][0] && game->board[vyska][1] == ' '){
+            game->board[vyska][1] = game->board[vyska][2];
+            game->board[vyska][2] = ' ';
+            }
+            }
+        }
+        }
     game->score += cislo;
     return true;
 }

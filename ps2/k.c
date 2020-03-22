@@ -52,7 +52,7 @@ bool update(struct game *game, int dy, int dx){
     if ( dy < -1){
     return false;
     }
-    if ( dy >= 2){
+    if ( dy > 1){
     return false;
     }
     if ( dx < -1){
@@ -65,7 +65,7 @@ bool update(struct game *game, int dy, int dx){
     if (dy == 1){
     int v = 0;
     for (int sirka = 0; sirka <= 3; sirka++){
-        for (int vyska = 0; vyska < 3; vyska++){
+        for (int vyska = 0; vyska <= 3; vyska++){
             v = 0;
             int nasobitel = 1;
             if (game->board[vyska][sirka] != ' '){
@@ -120,7 +120,7 @@ bool update(struct game *game, int dy, int dx){
     }
     if (dy == -1){
     int v = 0;
-    for (int sirka = 0; sirka < 3; sirka++){
+    for (int sirka = 0; sirka <= 3; sirka++){
         for (int vyska = 3; vyska >= 0; vyska--){
             v = 0;
             int nasobitel = 1;
@@ -177,7 +177,7 @@ bool update(struct game *game, int dy, int dx){
     if (dx == 1){
     int v = 0;
     for (int vyska = 0; vyska <= 3; vyska++){
-        for (int sirka = 0; sirka < 3; sirka++){
+        for (int sirka = 0; sirka <= 3; sirka++){
             v = 0;
             int nasobitel = 1;
             if (game->board[vyska][sirka] != ' '){
@@ -232,7 +232,7 @@ bool update(struct game *game, int dy, int dx){
     }
     if (dx == -1){
     int v = 0;
-    for (int vyska = 0; vyska < 3; vyska++){
+    for (int vyska = 0; vyska <= 3; vyska++){
         for (int sirka = 3; sirka >= 0; sirka--){
             v = 0;
             int nasobitel = 1;
@@ -286,6 +286,6 @@ bool update(struct game *game, int dy, int dx){
             }
         }
         }
-    game->score += cislo + (1-1);
+    game->score += cislo;
     return true;
 }

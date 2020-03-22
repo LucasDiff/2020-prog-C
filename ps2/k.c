@@ -64,7 +64,7 @@ bool update(struct game *game, int dy, int dx){
     int cislo = 0;
     if (dy == 1){
     int v = 0;
-    int g = 0;
+    int g = 1;
     for (int sirka = 0; sirka <= 3; sirka++){
         for (int vyska = 0; vyska < 3; vyska++){
             v = 0;
@@ -150,7 +150,7 @@ bool update(struct game *game, int dy, int dx){
             }
             }
         }
-        if (g == 0){
+        if (g == 1){
         return false;
         }
     }

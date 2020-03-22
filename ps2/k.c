@@ -13,7 +13,7 @@ bool is_game_won(const struct game game){
                 }
 }
 }
-    return false;
+     return false;
 }
 
 bool is_move_possible(const struct game game){
@@ -286,6 +286,6 @@ bool update(struct game *game, int dy, int dx){
             }
         }
         }
-    game->score += cislo;
+    game->score += cislo + (1-1);
     return true;
 }

@@ -25,16 +25,16 @@ bool is_move_possible(const struct game game){
             if (game.board[vyska][sirka] == 'K'){
                return false;
             }
-            if (game.board[vyska][sirka] == game.board[vyska + 1][sirka]){
+            if (game.board[vyska][sirka] == game.board[vyska + 1][sirka] && vyska <= 2){
                 return true;
             }
-            if (game.board[vyska][sirka] == game.board[vyska][sirka + 1]){
+            if (game.board[vyska][sirka] == game.board[vyska][sirka + 1] && sirka <= 2){
                 return true;
             }
-            if (game.board[vyska][sirka] == game.board[vyska - 1][sirka]){
+            if (game.board[vyska][sirka] == game.board[vyska - 1][sirka] && vyska >= 1){
                 return true;
             }
-            if (game.board[vyska][sirka] == game.board[vyska][sirka - 1]){
+            if (game.board[vyska][sirka] == game.board[vyska][sirka - 1] && sirka >=1 ){
                 return true;
             }
 }    
@@ -109,6 +109,13 @@ bool update(struct game *game, int dy, int dx){
                     cislo += nasobitel * 2;
                     }
                     }
+            if (game->board[vyska + 2][sirka] != ' ' && vyska <= 0){
+                if (game->board[vyska + 3][sirka] == ' '){
+                    game->board[vyska + 3][sirka] = game->board[vyska + 2][sirka];
+                    game->board[vyska + 2][sirka] = ' ';
+                    g++;
+                    }
+                }
             if (game->board[vyska + 1][sirka] != ' ' && vyska <= 1){
                 if (game->board[vyska + 2][sirka] == ' '){
                     game->board[vyska + 2][sirka] = game->board[vyska + 1][sirka];
@@ -126,6 +133,13 @@ bool update(struct game *game, int dy, int dx){
                 if (game->board[vyska + 2][sirka] == ' '){
                     game->board[vyska + 2][sirka] = game->board[vyska + 1][sirka];
                     game->board[vyska + 1][sirka] = ' ';
+                    g++;
+                    }
+                }
+            if (game->board[vyska + 2][sirka] != ' ' && vyska <= 0){
+                if (game->board[vyska + 3][sirka] == ' '){
+                    game->board[vyska + 3][sirka] = game->board[vyska + 2][sirka];
+                    game->board[vyska + 2][sirka] = ' ';
                     g++;
                     }
                 }
@@ -187,6 +201,13 @@ bool update(struct game *game, int dy, int dx){
                     cislo += nasobitel * 2;
                     }
                     }
+            if (game->board[vyska - 2][sirka] != ' ' && vyska >= 3){
+                if (game->board[vyska - 3][sirka] == ' '){
+                    game->board[vyska - 3][sirka] = game->board[vyska - 2][sirka];
+                    game->board[vyska - 2][sirka] = ' ';
+                    g++;
+                    }
+                }
             if (game->board[vyska - 1][sirka] != ' ' && vyska >= 2){
                 if (game->board[vyska - 2][sirka] == ' '){
                     game->board[vyska - 2][sirka] = game->board[vyska - 1][sirka];
@@ -204,6 +225,13 @@ bool update(struct game *game, int dy, int dx){
                 if (game->board[vyska - 2][sirka] == ' '){
                     game->board[vyska - 2][sirka] = game->board[vyska - 1][sirka];
                     game->board[vyska - 1][sirka] = ' ';
+                    g++;
+                    }
+                }
+            if (game->board[vyska - 2][sirka] != ' ' && vyska >= 3){
+                if (game->board[vyska - 3][sirka] == ' '){
+                    game->board[vyska - 3][sirka] = game->board[vyska - 2][sirka];
+                    game->board[vyska - 2][sirka] = ' ';
                     g++;
                     }
                 }
@@ -265,6 +293,13 @@ bool update(struct game *game, int dy, int dx){
                     cislo += nasobitel * 2;
                     }
                     }
+            if (game->board[vyska][sirka + 2] != ' ' && sirka <= 0){
+                if (game->board[vyska][sirka + 3] == ' '){
+                    game->board[vyska][sirka + 3] = game->board[vyska][sirka + 2];
+                    game->board[vyska][sirka + 2] = ' ';
+                    g++;
+                    }
+                }
             if (game->board[vyska][sirka + 1] != ' ' && sirka <= 1){
                 if (game->board[vyska][sirka + 2] == ' '){
                     game->board[vyska][sirka + 2] = game->board[vyska][sirka + 1];
@@ -282,6 +317,13 @@ bool update(struct game *game, int dy, int dx){
                 if (game->board[vyska][sirka + 2] == ' '){
                     game->board[vyska][sirka + 2] = game->board[vyska][sirka + 1];
                     game->board[vyska][sirka + 1] = ' ';
+                    g++;
+                    }
+                }
+            if (game->board[vyska][sirka + 2] != ' ' && sirka <= 0){
+                if (game->board[vyska][sirka + 3] == ' '){
+                    game->board[vyska][sirka + 3] = game->board[vyska][sirka + 2];
+                    game->board[vyska][sirka + 2] = ' ';
                     g++;
                     }
                 }
@@ -343,6 +385,13 @@ bool update(struct game *game, int dy, int dx){
                 }
                 cislo += nasobitel * 2;
                 }
+            if (game->board[vyska][sirka - 2] != ' ' && sirka >= 3){
+                if (game->board[vyska][sirka - 3] == ' '){
+                    game->board[vyska][sirka - 3] = game->board[vyska][sirka - 2];
+                    game->board[vyska][sirka - 2] = ' ';
+                    g++;
+                    }
+                    }
             if (game->board[vyska][sirka - 1] != ' ' && sirka >= 2){
                 if (game->board[vyska][sirka - 2] == ' '){
                     g++;
@@ -363,6 +412,13 @@ bool update(struct game *game, int dy, int dx){
                     g++;
                     }
                 }
+            if (game->board[vyska][sirka - 2] != ' ' && sirka >= 3){
+                if (game->board[vyska][sirka - 3] == ' '){
+                    game->board[vyska][sirka - 3] = game->board[vyska][sirka - 2];
+                    game->board[vyska][sirka - 2] = ' ';
+                    g++;
+                    }
+                }
                 }
             if ( game->board[vyska][2] != ' ' && game->board[vyska][2] == game->board[vyska][0] && game->board[vyska][1] == ' '){
             game->board[vyska][1] = game->board[vyska][2];
@@ -371,7 +427,6 @@ bool update(struct game *game, int dy, int dx){
             }
             }
         }
-        printf("the number g is %d\n",g);
         if (g == 0){
         return false;
         }

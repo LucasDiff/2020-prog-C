@@ -385,7 +385,7 @@ bool update(struct game *game, int dy, int dx){
                 }
                 cislo += nasobitel * 2;
                 }
-            if (game->board[vyska][sirka - 2] != ' ' && sirka >= 3){
+            if (game->board[vyska][sirka -  2] != ' ' && sirka >= 3){
                 if (game->board[vyska][sirka - 3] == ' '){
                     game->board[vyska][sirka - 3] = game->board[vyska][sirka - 2];
                     game->board[vyska][sirka - 2] = ' ';

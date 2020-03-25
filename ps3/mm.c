@@ -20,5 +20,5 @@ c = v;
 v = 0;
 }
 printf ("%ld\n", c );
-return 0;
+return c;
 }

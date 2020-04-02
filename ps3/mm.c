@@ -26,5 +26,5 @@ int main (){
         g = 0;
         }
     printf ("%d\n", v );
-    return v;
+    return 0;
 }

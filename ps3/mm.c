@@ -5,14 +5,14 @@
 
 int main (){
     int g = 0;
-    char c[10000000];
+    char c[1000000];
     scanf("%s",c);
     int v = 0;
     int a = 0;
     while(c[a] != '\0'){
     a++;
     }
-    for (int b = 0; b < a - 1; b++){
+    for (int b = 0; b < a; b++){
         v = v + c[b] - 48;
     }
         while ( v >= 10){

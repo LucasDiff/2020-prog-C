@@ -5,8 +5,7 @@
 
 int main (){
     int g = 0;
-    printf("Zadaj cislo\n");
-    char c[100000];
+    char c[10000000];
     scanf("%s",c);
     int v = 0;
     int a = 0;

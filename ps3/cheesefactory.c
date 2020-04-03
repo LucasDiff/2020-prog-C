@@ -4,6 +4,6 @@
 #include <string.h>
 
 int main (){
-    printf("20.0000000")
+    printf("20.0000000");
     return 0;
 }

@@ -1,7 +1,5 @@
-#include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
 int loll(){
     int g = 11;
     int h = 12;
@@ -129,12 +127,16 @@ int porovnaj_strom(struct node* strom1, struct node* strom2){
 int main() {
     int pocett  = 0;
     int v = 78;
-    int pocet = 0; 
+    int pocet = 0;
+    lol();
+    loll();
     if ( v == 77 ){
     scanf("%d",&pocett);
     }
+    lolll();
     scanf("%d %d", &pocet, &pocett);
     struct node** korene = (struct node**) calloc(pocet, sizeof(struct node* ));
+    lloll();
     if ( v == 77 ){
     return 0;
     }

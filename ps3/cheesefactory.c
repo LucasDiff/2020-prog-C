@@ -1,9 +1,53 @@
 #include <stdio.h>
-#include <math.h>
+
 #include <stdlib.h>
+
 #include <string.h>
 
+#include <math.h>
+
+
+
 int main (){
-    printf("20.0000000\n20.0000000\n20.0000000\n20.0000000\n20.0000000\n");
+
+    double a = 0;
+
+    double b = 0;
+
+    scanf("%lf",&a);
+
+    scanf("%lf",&b);
+
+
+
+    if (a == 0){
+
+        for (int c = 0; c < b; c++){
+
+        printf("%.7f\n", 100 / b);
+
+        }
+
+        return 0;
+
+    }
+
+    if (b == 0){
+
+        printf("100.0000000\n");
+
+        return 0;
+
+    }
+
+
+
+    for (int c = 0; c < b; c++){
+
+        printf("%.7f\n", 100 / b);       
+
+    }
+
     return 0;
+
 }

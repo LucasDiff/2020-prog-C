@@ -58,13 +58,13 @@ struct bmp_image* scale(const struct bmp_image* image, float factor);
  * Creates copy of image containing only selected rectangular area.
  *
  * @arg image the image
- * @arg start_y top-left corner position on y-axis of selected area
- * @arg start_x top-left corner position on x-axis of selected area
- * @arg height the height of selected area in pixels
- * @arg width the width of selected area in pixels
+ * @arg start_y top-left corner position on y-axis of selected area in the range <0, image->height>
+ * @arg start_x top-left corner position on x-axis of selected area in the range <0, image->width>
+ * @arg height the height of selected area in pixels in the range <1, image->height>
+ * @arg width the width of selected area in pixels in the range <1, image->width>
  * @return the copy of image containing only selected area or null, if there is no image (NULL given) or area position is out of range
  */
-struct bmp_image* crop(const struct bmp_image* image, const int start_y, const int start_x, const int height, const int width);
+struct bmp_image* crop(const struct bmp_image* image, const uint32_t start_y, const uint32_t start_x, const uint32_t height, const uint32_t width);
 
 
 /**
@@ -77,4 +77,4 @@ struct bmp_image* crop(const struct bmp_image* image, const int start_y, const i
  * @return the copy of image containing only selected color channels or null, if there is no image (NULL given) or color definition is not valid.
  */
 struct bmp_image* extract(const struct bmp_image* image, const char* colors_to_keep);
-#endif
+#endif 

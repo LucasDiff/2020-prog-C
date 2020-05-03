@@ -1,7 +1,5 @@
 #include <stdio.h>
 #include "bmp.h"
-#include "bmp.c"
-#include "transformations.c"
 #include "transformations.h"
 #include <malloc.h>
 

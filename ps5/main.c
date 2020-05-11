@@ -30,7 +30,7 @@ void delete_item_from_backpack(struct backpack* backpack, struct item* item);
 
 struct item* get_item_from_backpack(const struct backpack* backpack, char* name);
 
-struct container* destroy_containers(struct container* first, enum container_type type);
+struct container* destroy_containers(struct container* first);
 
 return 0;
 }

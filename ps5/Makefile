@@ -2,7 +2,7 @@
 CC = gcc
 CFLAGS = -std=c11 -Wall -Werror
 LDLIBS = -lm
-OUTPUT = ps3
+OUTPUT = ps5
 
 #targets
 all: backpack.o command.o container.o game.o item.o parser.o room.o world.o main.o

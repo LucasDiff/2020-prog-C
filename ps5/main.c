@@ -1,36 +1,44 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
-#include"backpack.h"
+#include"backpack.c"
 #include"item.h"
-#include"command.c"
-
+#include"command.h"
+#include"container.h"
 int main (){
+
 struct command* help = create_command("POMOC", "Zobrazi zoznam vsetkych prikazov", NULL, 0);
 
-struct item* destroy_item(struct item* item);
 
-	help = destroy_command(help);
+help = destroy_command(help);
+
+
+
+struct item* lol = create_item("lol","nope",0);
+
+destroy_item(lol);
+
   
-struct  backpack* create_backpack(const int capacity);
 
+struct  backpack* kapp = create_backpack(5);
  
 
-struct  backpack* destroy_backpack(struct backpack* backpack);
+destroy_backpack(kapp);
+
+
+struct  backpack* kappp = create_backpack(5);
+struct item* loll = create_item("loll","nope",0);
+
+add_item_to_backpack(kappp, loll);
 
 
 
-bool add_item_to_backpack(struct backpack* backpack, struct item* item);
+delete_item_from_backpack(kappp, loll);
 
 
+struct container* yes = create_container(NULL, ROOM, NULL);
+destroy_containers(yes);
 
-void delete_item_from_backpack(struct backpack* backpack, struct item* item);
-
-
-
-struct item* get_item_from_backpack(const struct backpack* backpack, char* name);
-
-struct container* destroy_containers(struct container* first);
 
 return 0;
 }

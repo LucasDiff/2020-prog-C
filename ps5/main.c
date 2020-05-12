@@ -1,10 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
-#include"backpack.c"
-#include"item.h"
-#include"command.h"
-#include"container.h"
 
 
 

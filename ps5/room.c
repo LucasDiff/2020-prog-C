@@ -1,8 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
-#include "room.h"
-#include "container.h"
 
 struct room* destroy_room(struct room* room){
     char izba = 'q';

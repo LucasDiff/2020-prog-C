@@ -2,8 +2,7 @@
 #include<stdlib.h>
 #include<string.h>
 #include<ctype.h>
-#include"backpack.h"
-#include"container.c"
+
 
 struct backpack* create_backpack(const int capacity){
     int c = 11;

@@ -6,14 +6,6 @@
 
 #include<ctype.h>
 
-#include"container.h"
-
-#include"room.c"
-
-#include"item.c"
-
-#include"command.c"
-
 
 
 void konecny(struct container* prvy, struct container* koniec){

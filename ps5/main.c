@@ -11,8 +11,7 @@ int main (){
 
 struct command* help = create_command("POMOC", "Zobrazi zoznam vsetkych prikazov", NULL, 0);
 
-
-help = destroy_command(help);
+destroy_command(help);
 
 
 

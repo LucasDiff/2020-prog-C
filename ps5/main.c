@@ -5,6 +5,11 @@
 #include"item.h"
 #include"command.h"
 #include"container.h"
+#include"container.c"
+#include"command.c"
+#include"item.c"
+
+
 int main (){
 
 struct command* help = create_command("POMOC", "Zobrazi zoznam vsetkych prikazov", NULL, 0);

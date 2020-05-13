@@ -5,6 +5,7 @@
 #include "command.h"
 #include "container.h"
 #include "item.h"
+#include "parser.h"
 
 
 int main (){
@@ -19,7 +20,9 @@ struct item* lol = create_item("lol","nope",0);
 
 destroy_item(lol);
 
-  
+struct parser* pravidlo = create_parser();
+
+destroy_parser(pravidlo);
 
 struct  backpack* kapp = create_backpack(5);
  

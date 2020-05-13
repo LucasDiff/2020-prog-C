@@ -6,7 +6,7 @@
 
 #include<ctype.h>
 
-
+#include "container.h"
 
 void konecny(struct container* prvy, struct container* koniec){
 

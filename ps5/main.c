@@ -56,5 +56,7 @@ delete_item_from_room(NULL,NULL);
 
 add_item_to_room(NULL,NULL);
 
+get_item_from_room(NULL,NULL);
+
 return 0;
 }

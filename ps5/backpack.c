@@ -2,7 +2,7 @@
 #include<stdlib.h>
 #include<string.h>
 #include<ctype.h>
-
+#include "backpack.h"
 
 struct backpack* create_backpack(const int capacity){
     int c = 11;

@@ -7,6 +7,7 @@
 #include "item.h"
 #include "parser.h"
 #include "room.h"
+#include "world.h"
 
 int main (){
 
@@ -57,6 +58,15 @@ delete_item_from_room(NULL,NULL);
 add_item_to_room(NULL,NULL);
 
 get_item_from_room(NULL,NULL);
+
+create_world();
+
+add_room_to_world(NULL,NULL);
+
+destroy_world(NULL);
+
+get_room(NULL,NULL);
+
 
 return 0;
 }

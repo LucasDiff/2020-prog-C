@@ -41,8 +41,20 @@ delete_item_from_backpack(kappp, loll);
 
 
 struct container* yes = create_container(NULL, ROOM, NULL);
+
+get_from_container_by_name(NULL,NULL);
+
 destroy_containers(yes);
 
+create_room(NULL,NULL);
+
+set_exits_from_room(NULL,NULL,NULL,NULL,NULL);
+
+show_room(NULL);
+
+delete_item_from_room(NULL,NULL);
+
+add_item_to_room(NULL,NULL);
 
 return 0;
 }

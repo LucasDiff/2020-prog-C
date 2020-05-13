@@ -6,7 +6,7 @@
 #include "container.h"
 #include "item.h"
 #include "parser.h"
-
+#include "room.h"
 
 int main (){
 

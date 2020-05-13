@@ -407,3 +407,22 @@ struct container* remove_container(struct container *first, void *entry){
 	return first;
 
 }
+
+void* get_from_container_by_name(struct container *first, const char *name){
+	if(first == NULL || name == NULL){
+    return NULL;
+    }
+    int second = -1;
+	struct container *prvy = first;
+	while(prvy != NULL && second == -1){
+		char * item_name = meno(prvy);
+		if(item_name == NULL){
+			prvy = prvy->next;
+			continue;
+		}
+		if(vyber(name, item_name) == 0)
+			return prvy;
+		prvy = prvy->next;
+	}
+	return NULL;
+    }

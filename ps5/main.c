@@ -8,6 +8,7 @@
 #include "parser.h"
 #include "room.h"
 #include "world.h"
+#include "game.h"
 
 int main (){
 
@@ -67,6 +68,13 @@ destroy_world(NULL);
 
 get_room(NULL,NULL);
 
+play_game(NULL);
+
+create_game();
+
+destroy_game(NULL);
+
+execute_command(NULL,NULL);
 
 return 0;
 }

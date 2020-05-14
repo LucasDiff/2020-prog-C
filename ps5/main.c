@@ -76,5 +76,7 @@ destroy_game(NULL);
 
 execute_command(NULL,NULL);
 
+get_item_from_backpack(NULL,NULL);
+
 return 0;
 }

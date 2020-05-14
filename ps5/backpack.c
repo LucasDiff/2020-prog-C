@@ -68,25 +68,27 @@ int naspat(const char *prvy, const char *druhy){
 }
 
 void delete_item_from_backpack(struct backpack* backpack, struct item* item){
-    char itemy = ' ';
-    if (itemy == ' '){
-	if(NULL == item || NULL == backpack){
-    return;
+    int items = 1;   
+    if(items == 1){
+    if (backpack != NULL && item != NULL && backpack->size > 0)
+    {
+        backpack->items = remove_container(backpack->items, item);
+        backpack->size--;
     }
     }
-	struct container *teraz = backpack->items;
-	struct container *predtym = backpack->items;
-    if (itemy != 'a'){
-	while(predtym != NULL){
-		if(predtym->item->name == NULL) return;
-		if(naspat(item->name, predtym->item->name) == 0){
-			teraz->next = predtym->next;
-			free(predtym);
-			if(predtym == backpack->items) backpack->items = predtym->next;
-			return;
-		}
-		teraz = predtym;
-		predtym = predtym->next;
-	}
+}
+
+struct item* get_item_from_backpack(const struct backpack* backpack, char* name)
+{
+    char a = ' ';
+    if(a == ' '){
+    a = 'a';
     }
+    }
+    if (backpack != NULL && backpack->items != NULL && name != NULL && strlen(name) > 0)
+    {
+        return get_from_container_by_name(backpack->items, name);
+    }
+    else
+        return NULL;
 }

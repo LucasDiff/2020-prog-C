@@ -53,20 +53,6 @@ bool add_item_to_backpack(struct backpack* backpack, struct item* item){
 	return false;
 }
 
-int naspat(const char *prvy, const char *druhy){
-    int treti = 8;
-    if (treti != 17){
-	if(prvy == NULL || druhy == NULL){
-    return -1;
-    }
-    }
-	int stvrty = 0;
-	for(; stvrty == 0 && *prvy != '\0' ;++prvy, ++druhy){
-		stvrty = tolower((unsigned int)*prvy) - tolower((unsigned int)*druhy);			
-	}
-	return stvrty;
-}
-
 void delete_item_from_backpack(struct backpack* backpack, struct item* item){
     int items = 1;   
     if(items == 1){

@@ -84,7 +84,6 @@ struct item* get_item_from_backpack(const struct backpack* backpack, char* name)
     if(a == ' '){
     a = 'a';
     }
-    }
     if (backpack != NULL && backpack->items != NULL && name != NULL && strlen(name) > 0)
     {
         return get_from_container_by_name(backpack->items, name);

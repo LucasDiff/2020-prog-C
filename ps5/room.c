@@ -13,7 +13,10 @@
 
 
 struct room* create_room(char *name, char *description){	
-
+     if (name == NULL || description == NULL || strlen(name) < 1 || strlen(description) < 1){
+        return NULL;
+     }
+     
     char meno = ' ';
 
 	if(name == NULL || strlen(name) == 0){

@@ -8,6 +8,8 @@
 
 #include "container.h"
 
+struct container * remove_item_from_container(struct container * first, struct container * prev, struct container * current);
+
 void konecny(struct container* prvy, struct container* koniec){
 
     int posledny = 1;
@@ -123,6 +125,52 @@ struct container* create_container(struct container* first, enum container_type 
 }
 
 
+
+struct container* remove_container(struct container *first, void *entry)
+{
+    if (first != NULL && entry != NULL)
+    {
+        struct container *prev = NULL;
+        struct container *current = first;
+        while (current != NULL)
+        {
+            switch (first->type)
+            {
+                case ITEM:
+                    if (current->item == entry)
+                    {
+                        first = remove_item_from_container(first, prev, current);
+                        return first;
+                    }
+                    break;
+                case TEXT:
+                    if (current->text == entry)
+                    {
+                        first = remove_item_from_container(first, prev, current);
+                        return first;
+                    }
+                    break;
+                case ROOM:
+                    if (current->room == entry)
+                    {
+                        first = remove_item_from_container(first, prev, current);
+                        return first;
+                    }
+                    break;
+                case COMMAND:
+                    if (current->command == entry)
+                    {
+                        first = remove_item_from_container(first, prev, current);
+                        return first;
+                    }
+                    break;
+            }
+            prev = current;
+            current = current->next;
+        }
+    }
+    return first;
+}
 
 void zrus_entry(struct container* zaciatok){
 
@@ -357,57 +405,6 @@ char* menomeno(void *vloz, enum container_type typ){
 }
 
 
-
-struct container* remove_container(struct container *first, void *entry){
-
-	if(NULL == first || entry == NULL){
-
-    return first;
-
-    }
-
-    char vloz = ' ';
-
-	
-
-	struct container *pred = first;
-
-	struct container *po = first;
-
-
-
-	while(po != NULL && vloz == ' '){
-
-		if(vyber(meno(po), menomeno(entry, po->type)) == 0){
-
-			pred->next = po->next;
-
-			free(po);
-
-			if(po == first) return NULL;
-
-			return pred;
-
-		}
-
-		pred = po;
-
-		pred = po->next;
-
-	}
-
-	int c = -2;
-
-    if (c == -22 || vloz == ' '){
-
-    c += 11;;
-
-    }
-
-	return first;
-
-}
-
 void* get_from_container_by_name(struct container *first, const char *name){
 	if(first == NULL || name == NULL){
     return NULL;
@@ -426,3 +423,19 @@ void* get_from_container_by_name(struct container *first, const char *name){
 	}
 	return NULL;
     }
+
+struct container * remove_item_from_container(struct container * first, struct container * prev, struct container * current)
+{
+    if (prev == NULL)
+    {
+        first = first->next;
+        free(current);
+        return first;
+    }
+    else
+    {
+        prev->next = current->next;
+        free(current);
+        return first;
+    }
+}

@@ -78,5 +78,7 @@ execute_command(NULL,NULL);
 
 get_item_from_backpack(NULL,NULL);
 
+parse_input(NULL,NULL);
+
 return 0;
 }

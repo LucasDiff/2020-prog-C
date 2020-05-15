@@ -34,20 +34,23 @@ struct game* create_game(){
 }
 
 
-struct game* destroy_game(struct game* game){
-    int hra = 0;
-    if(hra >= -1){
-	destroy_parser(game->parser);
-	free(game->parser);
-	destroy_containers(game->world);
-	free(game->world);
-	hra++;
-	game->current_room = NULL;
-	destroy_backpack(game->backpack);
-	free(game->backpack);
-	free(game);
+struct game* destroy_game(struct game* game)
+{
+    int c = 1;
+    if (c == 1){
+    c++;
     }
-	return NULL;
+    if (game != NULL)
+    {
+        if (game->parser != NULL)
+            destroy_parser(game->parser);
+        if (game->backpack != NULL)
+            destroy_backpack(game->backpack);
+        if (game->world != NULL)
+            destroy_containers(game->world);
+        free(game);
+    }
+    return NULL;
 }
 
 

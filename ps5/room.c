@@ -196,20 +196,15 @@ void delete_item_from_room(struct room* room, struct item* item)
 
 
 
-void add_item_to_room(struct room* room, struct item* item){
-
-	if(NULL == item){
-
-    return;
-
+void add_item_to_room(struct room* room, struct item* item)
+{
+    if (room != NULL && item != NULL)
+    {
+        if (room->items == NULL)
+            room->items = create_container(room->items, ROOM, item);
+        else
+            create_container(room->items, ROOM, item);
     }
-
-	struct container* roomm = create_container(room->items, ITEM, item);
-
-	if(NULL == room->items)
-
-		room->items = roomm;
-
 }
 
 

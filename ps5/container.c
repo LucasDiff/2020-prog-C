@@ -360,50 +360,6 @@ char* meno(struct container *zaciatok){
 
 }
 
-char* menomeno(void *vloz, enum container_type typ){
-
-    int tips = -1;
-
-    if (tips >= 0){
-
-	switch(typ){
-
-		case ROOM:
-
-			return ((struct room*)vloz)->name;
-
-		break;
-
-		case ITEM:
-
-			return ((struct item*)vloz)->name;
-
-		break;
-
-		case COMMAND:
-
-			return ((struct command*)vloz)->name;
-
-		break;
-
-		case TEXT:
-
-			return (char*)vloz;
-
-		break;
-
-		default:
-
-		break;
-
-	}
-
-    }
-
-	return NULL;
-
-}
-
 
 void* get_from_container_by_name(struct container *first, const char *name){
 	if(first == NULL || name == NULL){

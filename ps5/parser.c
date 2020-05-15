@@ -1,66 +1,72 @@
-#include<stdio.h>
-#include<string.h>
-#include<ctype.h>
-#include<stdlib.h>
-#include"parser.h"
-#include "backpack.h"
+#include <stdlib.h>
+#include <string.h>
+#include <stdio.h>
+#include "parser.h"
+#include "command.h"
+
+
 struct parser* create_parser(){
-	struct parser* point = malloc(sizeof(struct parser));
-	struct command* basic_coms[17];
-    basic_coms[0] = create_command("KONIEC", "Tento prikaz", "(QUIT)|(EXIT)", 2);
-	basic_coms[1] = create_command("SEVER", "Presun do miestnosti nachádzajúcej sa na sever od aktuálnej. Zmení referenciu aktuálnej miestnosti.", "(S)", 1);
-    basic_coms[2] = create_command("JUH", "Presun do miestnosti nachádzajúcej sa na juh od aktuálnej. Zmení referenciu aktuálnej miestnosti.", "(J)", 1);
-	basic_coms[3] = create_command("VYCHOD", "Presun do miestnosti nachádzajúcej sa na východ od aktuálnej. Zmení referenciu aktuálnej miestnosti.", "(V)", 1);
-    basic_coms[4] = create_command("ZAPAD", "Presun do miestnosti nachádzajúcej sa na východ od aktuálnej. Zmení referenciu aktuálnej miestnosti.", "(Z)", 1);
-	basic_coms[5] = create_command("ROZHLIADNI SA", "Príkaz vypíše aktuálne informácie o miestnosti, v ktorej sa hráč práve nachádza.", "", 0);
-	basic_coms[6] = create_command("PRIKAZY", "Príkaz vypíše na obrazovku zoznam všetkých príkazov, ktoré hra poskytuje.", "(HELP)|(POMOC)", 2);
-	basic_coms[7] = create_command("VERZIA", "Príkaz zobrazí číslo verzie hry, ľubovoľný sprievodný text a meno a priezvisko autora s kontaktom (e-mailová adresa, webová stránka).", "", 0);
-    basic_coms[8] = create_command("RESTART", "Znovu spustí hru od začiatku. Zmení stav hry na požadovaný.", "", 0);
-	basic_coms[9] = create_command("O HRE", "Príkaz zobrazí krátky text, ktorý poslúži ako úvod do príbehu. Ako dobrý začiatok sa javí známy text: Kde bolo tam bolo, …", "(ABOUT)", 1);
-	basic_coms[10] = create_command("VEZMI", "Vloží predmet z miestnosti do batohu. Príkaz má jeden povinný parameter, ktorým je názov predmetu. Ak predmet nebude zadaný, program vypíše na obrazovku vhodnú hlášku (napr. Neviem, čo chceš vziať.).", "", 0);
-	basic_coms[11] = create_command("POLOZ", "Položí predmet z batohu do miestnosti. Príkaz má jeden povinný parameter, ktorým je názov predmetu. Ak predmet nebude zadaný, program vypíše na obrazovku vhodnú hlášku (napr. Neviem, čo chceš položiť.)", "", 0);
-	basic_coms[12] = create_command("INVENTAR", "Zobrazí obsah hráčovho batohu.", "(I)", 1);
-	basic_coms[13] = create_command("POUZI", "Použije predmet z batohu alebo miestnosti. Príkaz má jeden povinný parameter, ktorým je názov predmetu. Ak predmet nebude zadaný, program vypíše na obrazovku vhodnú hlášku (napr. Neviem, čo chceš použiť.).", "", 0);
-    basic_coms[14] = create_command("PRESKUMAJ", "Vypíše opis predmetu, ktorý sa musí nachádzať v miestnosti alebo batohu. Príkaz má jeden povinný parameter, ktorým je názov predmetu. Ak predmet nebude zadaný alebo sa nenájde v batohu alebo v miestnosti, program vypíše na obrazovku vhodnú hlášku (napr. Neviem, čo chceš preskúmať.).", "", 0);
-	basic_coms[15] = create_command("NAHRAJ", "Príkaz zabezpečí nahratie uloženej pozície hry z disku. Voliteľným parametrom je cesta k súboru.", "(LOAD)", 1);
-	basic_coms[16] = create_command("ULOZ", "Príkaz uloží stav rozohratej hry na disk. Voliteľným parametrom je cesta k súboru.", "(SAVE)", 1);
-	
-	point->commands = create_container(NULL, COMMAND, basic_coms[0]);
-	if(NULL == point->commands){
-		free(point);
-		return NULL;
-	}
-	point->commands = create_container(point->commands, COMMAND, basic_coms[1]);
-	point->commands = create_container(point->commands, COMMAND, basic_coms[2]);
-	point->commands = create_container(point->commands, COMMAND, basic_coms[3]);
-	point->commands = create_container(point->commands, COMMAND, basic_coms[4]);
-	point->commands = create_container(point->commands, COMMAND, basic_coms[5]);
-	point->commands = create_container(point->commands, COMMAND, basic_coms[6]);
-	point->commands = create_container(point->commands, COMMAND, basic_coms[7]);
-	point->commands = create_container(point->commands, COMMAND, basic_coms[8]);
-	point->commands = create_container(point->commands, COMMAND, basic_coms[9]);
-	point->commands = create_container(point->commands, COMMAND, basic_coms[10]);
-	point->commands = create_container(point->commands, COMMAND, basic_coms[11]);
-	point->commands = create_container(point->commands, COMMAND, basic_coms[12]);
-	point->commands = create_container(point->commands, COMMAND, basic_coms[13]);
-	point->commands = create_container(point->commands, COMMAND, basic_coms[15]);
-	point->commands = create_container(point->commands, COMMAND, basic_coms[16]);
-	
-	point->history = create_container(NULL, COMMAND, basic_coms[9]);
-    int yes = 1;
-	if(point->history == NULL && yes == 1){
-		free(point);
-		return NULL;
-	}
-	return point;
+    char a = ' ';
+    struct parser * parser = calloc(1, sizeof(parser));
+    if(a == ' '){
+
+    parser->commands = create_container(NULL, COMMAND, create_command("SEVER", "SEVER", "(\\s*[sS][eE][vV][eE][rR]\\s*)", 1));
+    create_container(parser->commands, COMMAND, create_command("JUH", "JUH", "\\s*[jJ][uU][hH]]\\s*", 1));
+    }
+    if (a != 'a'){
+    create_container(parser->commands, COMMAND, create_command("VYCHOD", "VYCHOD", "\\s*[vV][yY][cC][hH][oO][dD]\\s*", 1));
+    create_container(parser->commands, COMMAND, create_command("ZAPAD", "ZAPAD", "\\s*[zZ][aA][pP][aA][dD]\\s*", 1));
+
+    create_container(parser->commands, COMMAND, create_command("ROZHLIADNI SA", "ROZHLIADNI SA", "\\s*[rR][oO][zZ][hH][lL][iI][aA][dD][nN][iI][ ][sS][aA]\\s*", 1));
+    create_container(parser->commands, COMMAND, create_command("PRIKAZY", "PRIKAZY", "\\s*[pP][rR][iI][kK][aA][zZ][yY]\\s*", 1));
+    }
+    create_container(parser->commands, COMMAND, create_command("VERZIA", "VERZIA", "\\s*[vV][eE][rR][zZ][iI][aA]\\s*", 1));
+    create_container(parser->commands, COMMAND, create_command("RESTART", "RESTART", "\\s*[rR][eE][sS][tT][aA][rR][tT]\\s*", 1));
+    int games = -1;
+    if(games != 0){
+    create_container(parser->commands, COMMAND, create_command("O HRE", "O HRE", "\\s*[oO][ ][hH][rR][eE]\\s*", 1));
+    create_container(parser->commands, COMMAND, create_command("VEZMI", "VEZMI", "\\s*[vV][eE][zZ][mM][iI]\\s*", 1));
+    create_container(parser->commands, COMMAND, create_command("POLOZ", "POLOZ", "\\s*[pP][oO][lL][oO][zZ]\\s*", 1));
+    create_container(parser->commands, COMMAND, create_command("INVENTAR", "INVENTAR", "\\s*[iI][nN][vV][eE][nN][tT][aA][rR]\\s*", 1));
+
+    create_container(parser->commands, COMMAND, create_command("POUZI", "POUZI", "\\s*[pP][oO][uU][zZ][iI]\\s*", 1));
+    create_container(parser->commands, COMMAND, create_command("PRESKUMAJ", "PRESKUMAJ", "\\s*[pP][rR][eE][sS][kK][uU][mM][aA][jJ]\\s*", 1));
+    create_container(parser->commands, COMMAND, create_command("NAHRAJ", "NAHRAJ", "\\s*[nN][aA][hH][rR][aA][jJ]\\s*", 1));
+    create_container(parser->commands, COMMAND, create_command("ULOZ", "ULOZ", "\\s*[uU][lL][oO][zZ]\\s*", 1));
+    create_container(parser->commands, COMMAND, create_command("KONIEC", "KONIEC", "\\s*[kK][oO][nN][iI][eE][cC]\\s*", 1));
+    }
+    parser->history = create_container(NULL, COMMAND, create_command("Start", "Start game", "(Start)", 0));
+    return parser;
 }
 
 struct parser* destroy_parser(struct parser* parser){
-	destroy_containers(parser->commands);
-	
-	destroy_containers(parser->history);
-
-	free(parser);
-	
-	return NULL;
+    int b = 1;
+    if (parser != NULL && b == 1){
+        if (parser->history != NULL)
+            destroy_containers(parser->history);
+        if (parser->commands != NULL)
+            destroy_containers(parser->commands);
+        free(parser);
+    }
+    b++;
+    return NULL;
+}
+struct command* parse_input(struct parser* parser, char* input)
+{
+    int c = 1;
+    if (parser == NULL || input == NULL || strlen(input) < 1)
+        return NULL;
+    else
+    {
+        while (parser->commands != NULL && parser->commands->command != NULL)
+        {
+            if (regexec(&parser->commands->command->preg, input, 0, NULL, REG_ICASE) != REG_NOMATCH)
+                return parser->commands->command;
+            parser->commands = parser->commands->next;
+        }
+        return NULL;
+    }
+    if (c >= 2){
+    c ++;
+    }
 }

@@ -1,83 +1,48 @@
-#include<stdio.h>
-
-#include<stdlib.h>
-
-#include<string.h>
+#include <stdlib.h>
+#include <string.h>
+#include <regex.h>
+#include <stdio.h>
 #include "command.h"
 
+struct command* create_command(char* name, char* description, char* pattern, size_t nmatch)
+{
+    int y = 1;
+    if (name != NULL && description != NULL && strlen(name) > 0 && strlen(description) > 0)
+    {
+        struct command * novy = calloc(1, sizeof(struct command));
 
+        char *new_description = malloc(strlen(description) + 1);
+        char *new_name = malloc(strlen(name) + 1);
 
+        strcpy(new_name, name);
+        strcpy(new_description, description);
 
-struct command* create_command(char* name, char* description, char* pattern, size_t nmatch){
+        novy->name = new_name;
+        novy->description = new_description;
 
-    int patt = 1;
+        if (nmatch)
+            novy->nmatch = nmatch;
 
-    if (patt == 1){
-
-	if(name == NULL || strlen(name) == 0){
-
-		return NULL;
-
-	}
-
+        if (pattern != NULL)
+        {
+            regex_t regex;
+            regcomp(&regex, pattern, 0);
+            novy->preg = regex;
+        }
+        if ( y == 1){
+        y ++;
+        }
+        return novy;
     }
-
-
-
-	if(description == NULL || strlen(description) == 0){
-
-		return NULL;
-
-	}
-
-
-
-	struct command* novy = malloc(sizeof(struct command));
-
-	if(patt != 2){
-
-	novy->name = malloc(sizeof(char)*strlen(name)+1);
-
-	strcpy(novy->name, name);
-
-    }
-
-	
-
-	novy->description = malloc(sizeof(char)*strlen(description)+1);
-
-	strcpy(novy->description, description);
-
-	
-
-	novy->nmatch = nmatch;
-
-    int g = 11;
-
-	novy->groups = &pattern;
-
-    if ( g == 11){
-
-    g += -1;
-
-    }
-
-	return novy;
-
+    else
+        return NULL;
 }
 
 
-
 struct command* destroy_command(struct command* command){
-
 	free(command->name);
-
 	free(command->description);
-
 	free(command);		
 
-
-
 	return NULL;
-
 }

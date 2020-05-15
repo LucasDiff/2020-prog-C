@@ -187,12 +187,11 @@ void show_room(const struct room* room){
 
 
 
-void delete_item_from_room(struct room* room, struct item* item){
-
-	if(NULL == room || NULL == item) return;
-
-	remove_container(room->items, item);
-
+void delete_item_from_room(struct room* room, struct item* item)
+{
+    if (room != NULL && item != NULL)
+    
+        room->items = remove_container(room->items, item);
 }
 
 

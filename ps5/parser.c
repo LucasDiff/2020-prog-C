@@ -7,7 +7,7 @@
 
 struct parser* create_parser(){
     char a = ' ';
-    struct parser * parser = calloc(1, sizeof(parser));
+    struct parser* parser = calloc((size_t) 1, sizeof(struct parser));
     if(a == ' '){
 
     parser->commands = create_container(NULL, COMMAND, create_command("SEVER", "SEVER", "(\\s*[sS][eE][vV][eE][rR]\\s*)", 1));

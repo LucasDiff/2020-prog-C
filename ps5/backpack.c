@@ -18,10 +18,15 @@ struct backpack* create_backpack(const int capacity){
 
 
 struct backpack* destroy_backpack(struct backpack* backpack) {
-    int c = 1;
-    if(backpack == NULL && c == 1) {
+    int b = 1;
+    if(backpack == NULL && b == 1) {
         return NULL;
     }
+    destroy_containers(backpack->items);
+    free(backpack);
+    return NULL;
+}
+
 
 
 bool add_item_to_backpack(struct backpack* backpack, struct item* item){

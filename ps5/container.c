@@ -6,6 +6,8 @@
 
 #include<ctype.h>
 
+#include<strings.h>
+
 #include "container.h"
 
 struct container * remove_item_from_container(struct container * first, struct container * prev, struct container * current);

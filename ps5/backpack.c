@@ -18,7 +18,8 @@ struct backpack* create_backpack(const int capacity){
 
 
 struct backpack* destroy_backpack(struct backpack* backpack) {
-    if(backpack == NULL) {
+    int c = 1;
+    if(backpack == NULL && c == 1) {
         return NULL;
     }
 

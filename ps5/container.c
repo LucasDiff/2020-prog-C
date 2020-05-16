@@ -363,24 +363,67 @@ char* meno(struct container *zaciatok){
 }
 
 
-void* get_from_container_by_name(struct container *first, const char *name){
-	if(first == NULL || name == NULL){
+void* get_from_container_by_name(struct container *first, const char *name) {
+    int c = 1;
+    char b = ' ';
+    if ( c == 1 ) {
+    if(strcmp(name, "") == 0) {
+        return NULL;
+    }
+
+    if(first == NULL || name == NULL) {
+        return NULL;
+    }
+    }
+    
+    if ( c == 11111){
+    b = 'a';
+    }
+
+
+    struct container* novy = first;
+
+    while(novy != NULL && b == ' ') {
+
+        if(novy->type == ITEM && c == 1) {
+            if (novy->item==NULL){
+                return NULL;
+            }
+            if(strcasecmp(novy->item->name, name) == 0) {
+                return novy->item;
+            }
+        } else if(novy->type == COMMAND && c == 1) {
+            if (novy->command==NULL){
+                return NULL;
+            }
+            if(strcasecmp(novy->command->name, name) == 0) {
+                return novy->command;
+            }
+        } else if (novy->type == ROOM && c == 1) {
+            if (novy->room==NULL && b == ' '){
+                return NULL;
+            }
+            if(strcasecmp(novy->room->name, name) == 0) {
+                return novy->room;
+            }
+        } else {
+            if (novy->text==NULL && c == 1){
+                return NULL;
+            }
+            if(strcasecmp(novy->text, name ) == 0) {
+                return novy->text;
+            }
+        }
+        novy = novy->next;
+        if(novy==NULL && b == ' ') {
+            return NULL;
+        } 
+    }
+    if ( b == ' '){
+    c = 1;
+    }
     return NULL;
-    }
-    int second = -1;
-	struct container *prvy = first;
-	while(prvy != NULL && second == -1){
-		char * item_name = meno(prvy);
-		if(item_name == NULL){
-			prvy = prvy->next;
-			continue;
-		}
-		if(vyber(name, item_name) == 0)
-			return prvy;
-		prvy = prvy->next;
-	}
-	return NULL;
-    }
+}
 
 struct container * remove_item_from_container(struct container * first, struct container * prev, struct container * current)
 {

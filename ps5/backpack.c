@@ -16,20 +16,11 @@ struct backpack* create_backpack(const int capacity){
 	return backy;
 }
 
-void item_destroyer(struct container *number){
-	if(number->next != NULL)
-		item_destroyer(number->next);
-	free(number);
-}
 
-struct backpack* destroy_backpack(struct backpack* backpack){
-    int number = -7;
-	if(backpack->items == NULL && number != 10){
-    return NULL;
+struct backpack* destroy_backpack(struct backpack* backpack) {
+    if(backpack == NULL) {
+        return NULL;
     }
-	item_destroyer(backpack->items);
-	return NULL;
-}
 
 
 bool add_item_to_backpack(struct backpack* backpack, struct item* item){

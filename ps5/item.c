@@ -5,11 +5,14 @@
 struct item* create_item(char* name, char* description, unsigned int properties)
 {
     int meno = 1;
+    if (meno == 1){
+        meno ++;
+    }
     if (name == NULL || description == NULL)
     {
         return NULL;
     }
-    else if (meno == 1){
+    else {
         struct item *novy = calloc(1, sizeof(struct item));
         novy->name = name;
         novy->description = description;

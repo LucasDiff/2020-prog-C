@@ -260,6 +260,10 @@ struct container* destroy_containers(struct container* first){
 
 
 void* get_from_container_by_name(struct container *first, const char *name) {
+    if(first == NULL || name == NULL){
+    return NULL;
+    }
+    
     int c = 1;
     char b = ' ';
     if ( c == 1 ) {

@@ -2,6 +2,7 @@
 #include<stdlib.h>
 #include "game.h"
 #include "room.h"
+#include "container.h"
 
 
 void play_game(struct game* game){

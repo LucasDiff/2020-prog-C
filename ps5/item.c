@@ -2,22 +2,22 @@
 #include<stdlib.h>
 #include<string.h>
 #include "item.h"
-struct item* create_item(char* name, char* description, unsigned int properties){
-    char meno = ' ';
-    if ( meno == ' '){
-	if(NULL == name || NULL == description){
-    return NULL;
+struct item* create_item(char* name, char* description, unsigned int properties)
+{
+    int meno = 1;
+    if (name == NULL || description == NULL)
+    {
+        return NULL;
     }
-	if(strlen(name) == 0 || strlen(description) == 0){
-    return NULL;
+    else if (meno == 1){
+        struct item *novy = calloc(1, sizeof(struct item));
+        novy->name = name;
+        novy->description = description;
+        novy->properties = properties;
+        return novy;
     }
-    }
-	struct item* bod = malloc(sizeof(struct item));
-	bod->name = name;
-	bod->description = description;
-	bod->properties = properties;
-	return bod;
 }
+
 
 
 struct item* destroy_item(struct item* item){

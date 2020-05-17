@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
+#include<strings.h>
 #include "game.h"
 #include "room.h"
 #include "container.h"
@@ -103,5 +104,16 @@ struct game* destroy_game(struct game* game)
 
 
 void execute_command(struct game* game, struct command* command){	
-	create_game();
+    if(strcasecmp(command->name, "GAMEOVER") == 0){
+    game->state = GAMEOVER;
+    }
+    if(strcasecmp(command->name, "PLAYING") == 0){
+    game->state = PLAYING;
+    }
+    if(strcasecmp(command->name, "SOLVED") == 0){
+    game->state = SOLVED;
+    }
+    if(strcasecmp(command->name, "RESTART") == 0){
+    game->state = RESTART;
+    }
 }

@@ -9,6 +9,10 @@
 void play_game(struct game* game){
     int hra = -1;
     if (hra == -1){
+        
+        if (game == NULL) {
+            return;
+        }
 	game->state = PLAYING;
 	while(game->state == PLAYING){
 		game->state = GAMEOVER;
@@ -57,7 +61,10 @@ struct game* destroy_game(struct game* game)
 }
 
 
-void execute_command(struct game* game, struct command* command){	
+void execute_command(struct game* game, struct command* command){
+    if (game == NULL || command == NULL) {
+        return;
+    }
     if(strcasecmp(command->name, "GAMEOVER") == 0){
     game->state = GAMEOVER;
     }

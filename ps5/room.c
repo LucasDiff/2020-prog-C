@@ -158,6 +158,10 @@ void show_room(const struct room* room){
     int show = 0;
 
     if (show >= 0){
+        
+        if (room == NULL) {
+            return;
+        }
 
 	printf("%s: %s\n", room->name, room->description);
 

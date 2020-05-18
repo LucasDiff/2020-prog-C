@@ -4,20 +4,30 @@
 #include "item.h"
 struct item* create_item(char* name, char* description, unsigned int properties)
 {
-    int meno = 1;
-    if (meno == 1){
-        meno ++;
-    }
-    if (name == NULL || description == NULL)
+    int vec = 1;
+    if (name == NULL || description == NULL || strlen(name) < 1 || strlen(description) < 1)
     {
         return NULL;
     }
-    else {
-        struct item *novy = calloc(1, sizeof(struct item));
-        novy->name = name;
-        novy->description = description;
-        novy->properties = properties;
-        return novy;
+    else
+    {
+        struct item *nova_vec = calloc(1, sizeof(struct item));
+
+        char *nove_meno = malloc(strlen(name) + 1);
+        char *novy_popis = malloc(strlen(description) + 1);
+        
+    
+        strcpy(nove_meno, name);
+        strcpy(novy_popis, description);
+
+        nova_vec->name = nove_meno;
+        nova_vec->description = novy_popis;
+        nova_vec->properties = properties;
+
+        return nova_vec;
+    }
+    if (vec == 1){
+    vec++;
     }
 }
 

@@ -11,74 +11,55 @@
 #include "game.h"
 
 int main (){
+	printf("Step 1\n");
+	struct command* help = create_command("POMOC", "Zobrazi zoznam vsetkych prikazov", NULL, 0);
+	destroy_command(help);
 
-struct command* help = create_command("POMOC", "Zobrazi zoznam vsetkych prikazov", NULL, 0);
+	printf("Step 2\n");
+	struct item* lol = create_item("lol","nope",0);
+	destroy_item(lol);
 
-destroy_command(help);
+	printf("Step 3\n");
+	struct parser* pravidlo = create_parser();
+	destroy_parser(pravidlo);
 
+	printf("Step 4\n");
+	struct  backpack* kapp = create_backpack(5);
+	destroy_backpack(kapp);
 
+	printf("Step 5\n");
+	struct  backpack* kappp = create_backpack(5);
+	struct item* loll = create_item("loll","nope",0);
+	add_item_to_backpack(kappp, loll);
+	delete_item_from_backpack(kappp, loll);
+	destroy_backpack(kappp);
 
-struct item* lol = create_item("lol","nope",0);
+	printf("Step 6\n");
+	struct container* yes = create_container(NULL, ROOM, NULL);
+	get_from_container_by_name(NULL,NULL);
+	destroy_containers(yes);
 
-destroy_item(lol);
+	printf("Step 7\n");
+	create_room(NULL,NULL);
+	set_exits_from_room(NULL,NULL,NULL,NULL,NULL);
+	show_room(NULL);
+	delete_item_from_room(NULL,NULL);
+	add_item_to_room(NULL,NULL);
+	get_item_from_room(NULL,NULL);
 
-struct parser* pravidlo = create_parser();
+	printf("Step 8\n");
+	create_world();
+	add_room_to_world(NULL,NULL);
+	destroy_world(NULL);
 
-destroy_parser(pravidlo);
+	printf("Step 9\n");
+	get_room(NULL,NULL);
+	play_game(NULL);
+	create_game();
+	destroy_game(NULL);
+	execute_command(NULL,NULL);
+	get_item_from_backpack(NULL,NULL);
+	parse_input(NULL,NULL);
 
-struct  backpack* kapp = create_backpack(5);
- 
-
-destroy_backpack(kapp);
-
-
-struct  backpack* kappp = create_backpack(5);
-struct item* loll = create_item("loll","nope",0);
-
-add_item_to_backpack(kappp, loll);
-
-
-
-delete_item_from_backpack(kappp, loll);
-
-
-struct container* yes = create_container(NULL, ROOM, NULL);
-
-get_from_container_by_name(NULL,NULL);
-
-destroy_containers(yes);
-
-create_room(NULL,NULL);
-
-set_exits_from_room(NULL,NULL,NULL,NULL,NULL);
-
-show_room(NULL);
-
-delete_item_from_room(NULL,NULL);
-
-add_item_to_room(NULL,NULL);
-
-get_item_from_room(NULL,NULL);
-
-create_world();
-
-add_room_to_world(NULL,NULL);
-
-destroy_world(NULL);
-
-get_room(NULL,NULL);
-
-play_game(NULL);
-
-create_game();
-
-destroy_game(NULL);
-
-execute_command(NULL,NULL);
-
-get_item_from_backpack(NULL,NULL);
-
-parse_input(NULL,NULL);
-
-return 0;
+	return 0;
 }

@@ -12,7 +12,7 @@ struct backpack* create_backpack(const int capacity){
     }
 	backy->capacity = capacity;
 	backy->size = 0;
-	backy->items = 0;	
+	backy->items = NULL;	
 	return backy;
 }
 

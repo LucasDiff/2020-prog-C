@@ -183,13 +183,11 @@ void zrus_entry(struct container* zaciatok){
 	switch(zaciatok->type){
 
 		case ROOM:
-
 			destroy_room(zaciatok->room);
 
 		break;
 
 		case ITEM:
-
 			destroy_item(zaciatok->item);
 
 		break;

@@ -76,16 +76,16 @@ struct room* destroy_room(struct room* room){
     }
 
 	free(room->name);
-
 	free(room->description);
+    destroy_containers(room->items);
 
-	if(room->south != NULL) destroy_room(room->south);
+	//if(room->south != NULL) destroy_room(room->south);
 
-	if(room->north != NULL) destroy_room(room->north);
+	//if(room->north != NULL) destroy_room(room->north);
 
-	if(room->east != NULL) destroy_room(room->east);
+	//if(room->east != NULL) destroy_room(room->east);
 
-	if(room->west != NULL) destroy_room(room->west);
+	//if(room->west != NULL) destroy_room(room->west);
 
 	free(room);	
 
@@ -158,30 +158,27 @@ void show_room(const struct room* room){
     int show = 0;
 
     if (show >= 0){
-        
-        if (room == NULL) {
-            return;
-        }
+    
+    if (room == NULL) {
+    	return;
+    }
 
-	printf("%s: %s\n", room->name, room->description);
+	printf("\n# %s: %s\n", room->name, room->description);
 
-	printf("Mozne vychody z miestnosti:\n");
+	printf("# Mozne vychody z miestnosti:\n");
 
-	if(room->north != NULL)
-
-		printf("Sever\n");
-
-	if(room->south != NULL)
-
-		printf("Juh\n");
-
-	if(room->east != NULL)
-
-		printf("Východ\n");
-
-	if(room->west != NULL)
-
-		printf("Západ\n");
+	if (room->north != NULL) {
+		printf("# Sever\n");
+	}
+	if (room->south != NULL) {
+		printf("# Juh\n");
+	}
+	if (room->east != NULL) {
+		printf("# Východ\n");
+	}
+	if (room->west != NULL) {
+		printf("# Západ\n");
+	}
 
     }
 
@@ -205,9 +202,9 @@ void add_item_to_room(struct room* room, struct item* item)
     if (room != NULL && item != NULL)
     {
         if (room->items == NULL)
-            room->items = create_container(room->items, ROOM, item);
+            room->items = create_container(room->items, ITEM, item);
         else
-            create_container(room->items, ROOM, item);
+            create_container(room->items, ITEM, item);
     }
 }
 

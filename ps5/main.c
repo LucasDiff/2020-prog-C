@@ -34,7 +34,7 @@ int main (){
 
 
 
-	/*	
+
 
 	struct container* world = create_world();
 
@@ -160,7 +160,6 @@ int main (){
 
 	destroy_game(gm);
 
-	*/
 
 
 

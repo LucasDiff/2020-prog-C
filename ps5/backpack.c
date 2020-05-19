@@ -32,31 +32,29 @@ struct backpack* destroy_backpack(struct backpack* backpack) {
 bool add_item_to_backpack(struct backpack* backpack, struct item* item){
     int itemm = 11;
     if(itemm == 11){
-if(item == NULL || backpack == NULL){
+	if(item == NULL || backpack == NULL){
     return NULL;
     }
     }
-if( backpack->capacity > backpack->size){
-if((item->properties & MOVABLE) > 0){
+	if( backpack->capacity > backpack->size){
+		if((item->properties & MOVABLE) > 0){
             if(itemm != 122){
-printf("a\n");
-struct container* backpackitem = create_container(backpack->items, ITEM, item);
-if (backpackitem != NULL && backpack->items == NULL) {
-backpack->items = backpackitem;
-}
-if (backpackitem != NULL && backpack->items != NULL) {
-backpack->size++;
-return true;
-}
-if(backpackitem != backpack->items){
-printf("cc\n");
-backpack->size++;
-return true;
+			struct container* backpackitem = create_container(backpack->items, ITEM, item);
+			if (backpackitem != NULL && backpack->items == NULL) {
+				backpack->items = backpackitem;
+			}
+			if (backpackitem != NULL && backpack->items != NULL) {
+				backpack->size++;
+				return true;
+			}
+			if(backpackitem != backpack->items){
+				backpack->size++;
+				return true;
             }
-}
-}
-}
-return false;
+			}
+		}
+	}
+	return false;
 }
 
 void delete_item_from_backpack(struct backpack* backpack, struct item* item){

@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
+#include <strings.h>
 #include "parser.h"
 #include "command.h"
 
@@ -10,8 +11,8 @@ struct parser* create_parser(){
     struct parser* parser = calloc((size_t) 1, sizeof(struct parser));
     if(a == ' '){
 
-    parser->commands = create_container(NULL, COMMAND, create_command("SEVER", "SEVER", "(\\s*[sS][eE][vV][eE][rR]\\s*)", 1));
-    create_container(parser->commands, COMMAND, create_command("JUH", "JUH", "\\s*[jJ][uU][hH]]\\s*", 1));
+    parser->commands = create_container(NULL, COMMAND, create_command("SEVER", "SEVER", "\\s*[sS][eE][vV][eE][rR]\\s*", 1));
+    create_container(parser->commands, COMMAND, create_command("JUH", "JUH", "\\s*[jJ][uU][hH]\\s*", 1));
     }
     if (a != 'a'){
     create_container(parser->commands, COMMAND, create_command("VYCHOD", "VYCHOD", "\\s*[vV][yY][cC][hH][oO][dD]\\s*", 1));
@@ -35,7 +36,7 @@ struct parser* create_parser(){
     create_container(parser->commands, COMMAND, create_command("ULOZ", "ULOZ", "\\s*[uU][lL][oO][zZ]\\s*", 1));
     create_container(parser->commands, COMMAND, create_command("KONIEC", "KONIEC", "\\s*[kK][oO][nN][iI][eE][cC]\\s*", 1));
     }
-    parser->history = create_container(NULL, COMMAND, create_command("Start", "Start game", "(Start)", 0));
+    parser->history = NULL;
     return parser;
 }
 
@@ -51,6 +52,7 @@ struct parser* destroy_parser(struct parser* parser){
     b++;
     return NULL;
 }
+
 struct command* parse_input(struct parser* parser, char* input)
 {
     int c = 1;
@@ -58,11 +60,21 @@ struct command* parse_input(struct parser* parser, char* input)
         return NULL;
     else
     {
-        while (parser->commands != NULL && parser->commands->command != NULL)
+    	struct container *cmd_container = parser->commands;
+        while (cmd_container != NULL && cmd_container->command != NULL)
         {
-            if (regexec(&parser->commands->command->preg, input, 0, NULL, REG_ICASE) != REG_NOMATCH)
-                return parser->commands->command;
-            parser->commands = parser->commands->next;
+            if (regexec(&cmd_container->command->preg, input, 0, NULL, REG_ICASE) != REG_NOMATCH) {
+            	if (strcasecmp(cmd_container->command->name, "ULOZ") != 0 && strcasecmp(cmd_container->command->name, "NAHRAJ") != 0) {
+				    char *input_text = malloc(strlen(input) + 1);
+				    strcpy(input_text, input);
+		        	struct container *hist_container = create_container(parser->history, TEXT, input_text);
+		        	if (parser->history == NULL) {
+		        		parser->history = hist_container;
+		        	}
+		        }
+                return cmd_container->command;
+       		}
+            cmd_container = cmd_container->next;
         }
         return NULL;
     }

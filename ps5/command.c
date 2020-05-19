@@ -10,7 +10,6 @@ struct command* create_command(char* name, char* description, char* pattern, siz
     if (name != NULL && description != NULL && strlen(name) > 0 && strlen(description) > 0)
     {
         struct command * novy = calloc(1, sizeof(struct command));
-
         char *new_description = malloc(strlen(description) + 1);
         char *new_name = malloc(strlen(name) + 1);
 
@@ -26,7 +25,10 @@ struct command* create_command(char* name, char* description, char* pattern, siz
         if (pattern != NULL)
         {
             regex_t regex;
-            regcomp(&regex, pattern, 0);
+            if (regcomp(&regex, pattern, 0)) {
+            	destroy_command(novy);
+            	return NULL;
+            }
             novy->preg = regex;
         }
         if ( y == 1){
@@ -40,9 +42,11 @@ struct command* create_command(char* name, char* description, char* pattern, siz
 
 
 struct command* destroy_command(struct command* command){
-	free(command->name);
-	free(command->description);
-	free(command);		
-
+	if (command != NULL) {
+		regfree(&command->preg);
+		free(command->name);
+		free(command->description);
+		free(command);		
+	}
 	return NULL;
 }

@@ -19,6 +19,7 @@ void play_game(char *kod) {
 
   int peg_a = 0;
   int peg_b = 0;
+  int poc = 0;
   bool koniec = false;
   int hist_posn = 0;
   int hist_size = 0;
@@ -26,10 +27,10 @@ void play_game(char *kod) {
   int status = STATUS_PLAY;
 
   turn_leds_off();
-
+  
   while (!koniec) {
     if (status == STATUS_PLAY) {
-      render_guess(guess);
+      render_guess(guess); 
       //reveal_kod(kod);
     }
 
@@ -77,6 +78,9 @@ void play_game(char *kod) {
 
       if (btn_enter.isButtonPressed()) {
         btn_enter.waitButtonRelease();
+           poc++;
+        lcd.setCursor(14,1);
+        lcd.print(poc);
 
         char *hist_entry = (char*) malloc(sizeof(char) * 4);
         for (int h = 0; h < 4; h++) {
@@ -91,17 +95,17 @@ void play_game(char *kod) {
         turn_leds_off();
         render_leds(peg_a, peg_b);
         delay(500);
-
         if (peg_a == 4) {
+          for( int g = 10; g >= poc; g--){
           led_effect();
-          led_effect();
-          led_effect();
-          delay(2000);
+          }
+          delay(1500);
           lcd.setCursor(0,0);
           lcd.print("WOOOW, dobry si!"); 
           lcd.setCursor(0,1);
-          lcd.print("Restart Arduino"); 
+          lcd.print("Pokus cislo : "); 
           koniec = true;
+          break;
         }
 
         if (hist_size == MAX_MOVES) {
@@ -112,9 +116,11 @@ void play_game(char *kod) {
             delay(100);
           }
           lcd.setCursor(0, 0);
-          lcd.print("Si to nezvladol ");
+          lcd.print("Nezvladol si to ");
           lcd.setCursor(0, 1);
-          lcd.print("  >>  :-(  <<   ");
+          lcd.print("kod :");
+          reveal_kod(kod);
+          
           koniec = true;
         }
       }

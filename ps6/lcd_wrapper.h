@@ -1,25 +1,56 @@
-#ifndef _LCD_WRAPPER_H
-#define _LCD_WRAPPER_H
+#ifndef _LCD_H
+#define _LCD_H
 
-#define BTN_1_PIN       0
-#define BTN_2_PIN       1
-#define BTN_3_PIN       2
-#define BTN_4_PIN       3
-#define BTN_ENTER_PIN   4
-
-#define NO_ACTION      0
-#define BUTTON_RELEASE 1
-#define BUTTON_ALT_1   2
-#define BUTTON_ALT_2   3
+/**
+ * Initialize LCD
+ * 
+ * Everything you need to initialize your LCD display, place here.
+ * This function should be called in function setup().
+ */
+void lcd_init();
 
 
-class GMButton {
-  int _pin;
-public:
-  GMButton(int pin);
-  bool isButtonPressed();
-  void waitButtonRelease();
-  int waitButtonAction(int alt_pin_1, int alt_pin_2);
-};
+/**
+ * Clears the LCD display
+ * 
+ * Clears content of the LCD display. After the call is display empty.
+ */
+void lcd_clear();
+
+
+/**
+ * Set cursor to given posititon
+ * 
+ * Sets cursor to given position based on x and y coordinates.
+ * @param column the column
+ * @param row the row
+ */
+void lcd_set_cursor(int column, int row);
+
+
+/**
+ * Print text on LCD display
+ * 
+ * Prints the givent text on the display on the current
+ * cursor position.
+ * @param text the text to print
+ */
+void lcd_print(const char* text);
+
+void lcd_print(char c);
+
+
+/**
+ * Set cursor to given positition and print text
+ * 
+ * Sets the cursor to given position based on x and y coorindates
+ * and then prints the given text.
+ * @param column the column
+ * @param row the row
+ * @param text the text to print
+ */
+void lcd_print_at(int column, int row, const char* text);
+
+void lcd_print_at(int column, int row, char c);
 
 #endif

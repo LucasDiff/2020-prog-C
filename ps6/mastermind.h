@@ -1,6 +1,12 @@
 #ifndef _MASTERMIND_H
 #define _MASTERMIND_H
 
+#define POCET_KOLIKOV   4
+#define MAX_MOVES       10
+
+#define STATUS_PLAY     1
+#define STATUS_HIST     2
+
 #define LED_BLUE_1      6
 #define LED_RED_1       7
 #define LED_BLUE_2      8
@@ -10,10 +16,12 @@
 #define LED_BLUE_4      12
 #define LED_RED_4       13
 
-#define MAX_MOVES       10
+#define BTN_1_PIN       0
+#define BTN_2_PIN       1
+#define BTN_3_PIN       2
+#define BTN_4_PIN       3
+#define BTN_ENTER_PIN   4
 
-#define STATUS_PLAY     1
-#define STATUS_HIST     2
 
 
 /**
@@ -56,7 +64,7 @@ void render_leds(const int peg_a, const int peg_b);
 /**
  * Turns all RGB leds off
  */
-void turn_leds_off();
+void turn_off_leds();
 
 
 /**
@@ -80,9 +88,11 @@ void render_history(char* secret, char** history, const int entry_nr);
  */
 void get_score(const char* secret, const char* guess, int* peg_a, int* peg_b);
 
-void play_game(char *kod);
+void leds_init();
 void render_guess(char *guess);
+void reveal_secret(char *secret);
 void led_effect();
-void turn_red_leds_on();
+void turn_on_leds();
+void turn_on_red_leds();
 
 #endif
